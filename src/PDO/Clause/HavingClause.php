@@ -21,7 +21,7 @@ class HavingClause extends ClauseContainer
      */
     public function having($column, $operator = null, $chainType = 'AND')
     {
-        $this->container[] = " $chainType `$column` $operator ?";
+        $this->container[] = " $chainType $column $operator ?";
     }
 
     /**
