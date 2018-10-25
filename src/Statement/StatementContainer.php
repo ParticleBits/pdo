@@ -1,22 +1,12 @@
 <?php
 
-/**
- * @license MIT
- * @license http://opensource.org/licenses/MIT
- */
+namespace Pb\PDO\Statement;
 
-namespace Slim\PDO\Statement;
+use Pb\PDO\Database;
+use Pb\PDO\Clause\LimitClause;
+use Pb\PDO\Clause\OrderClause;
+use Pb\PDO\Clause\WhereClause;
 
-use Slim\PDO\Clause\LimitClause;
-use Slim\PDO\Clause\OrderClause;
-use Slim\PDO\Clause\WhereClause;
-use Slim\PDO\Database;
-
-/**
- * Class Statement.
- *
- * @author Fabian de Laender <fabian@faapz.nl>
- */
 abstract class StatementContainer
 {
     /**
@@ -27,20 +17,25 @@ abstract class StatementContainer
     /**
      * @var array
      */
-    protected $columns = array();
+    protected $columns = [];
 
     /**
      * @var array
      */
-    protected $values = array();
+    protected $values = [];
 
     /**
      * @var array
      */
-    protected $placeholders = array();
+    protected $placeholders = [];
 
     /**
-     * @var
+     * @var array
+     */
+    protected $placeholdersMulti = [];
+
+    /**
+     * @var string
      */
     protected $table;
 
@@ -59,11 +54,6 @@ abstract class StatementContainer
      */
     protected $limitClause;
 
-    /**
-     * Constructor.
-     *
-     * @param Database $dbh
-     */
     public function __construct(Database $dbh)
     {
         $this->dbh = $dbh;
@@ -74,12 +64,10 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param null   $operator
      * @param null   $value
      * @param string $chainType
-     *
-     * @return $this
      */
     public function where($column, $operator = null, $value = null, $chainType = 'AND')
     {
@@ -91,11 +79,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
-     * @param null $operator
-     * @param null $value
-     *
-     * @return $this
+     * @param string $column
+     * @param null   $operator
+     * @param null   $value
      */
     public function orWhere($column, $operator = null, $value = null)
     {
@@ -107,11 +93,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param array  $values
      * @param string $chainType
-     *
-     * @return $this
      */
     public function whereBetween($column, array $values, $chainType = 'AND')
     {
@@ -123,10 +107,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
-     * @param array $values
-     *
-     * @return $this
+     * @param string $column
+     * @param array  $values
      */
     public function orWhereBetween($column, array $values)
     {
@@ -138,11 +120,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param array  $values
      * @param string $chainType
-     *
-     * @return $this
      */
     public function whereNotBetween($column, array $values, $chainType = 'AND')
     {
@@ -154,10 +134,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
-     * @param array $values
-     *
-     * @return $this
+     * @param string $column
+     * @param array  $values
      */
     public function orWhereNotBetween($column, array $values)
     {
@@ -169,11 +147,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param array  $values
      * @param string $chainType
-     *
-     * @return $this
      */
     public function whereIn($column, array $values, $chainType = 'AND')
     {
@@ -187,10 +163,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
-     * @param array $values
-     *
-     * @return $this
+     * @param string $column
+     * @param array  $values
      */
     public function orWhereIn($column, array $values)
     {
@@ -204,11 +178,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param array  $values
      * @param string $chainType
-     *
-     * @return $this
      */
     public function whereNotIn($column, array $values, $chainType = 'AND')
     {
@@ -222,10 +194,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
-     * @param array $values
-     *
-     * @return $this
+     * @param string $column
+     * @param array  $values
      */
     public function orWhereNotIn($column, array $values)
     {
@@ -239,11 +209,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param null   $value
      * @param string $chainType
-     *
-     * @return $this
      */
     public function whereLike($column, $value = null, $chainType = 'AND')
     {
@@ -255,10 +223,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
-     * @param null $value
-     *
-     * @return $this
+     * @param string $column
+     * @param null   $value
      */
     public function orWhereLike($column, $value = null)
     {
@@ -270,11 +236,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param null   $value
      * @param string $chainType
-     *
-     * @return $this
      */
     public function whereNotLike($column, $value = null, $chainType = 'AND')
     {
@@ -286,10 +250,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
-     * @param null $value
-     *
-     * @return $this
+     * @param string $column
+     * @param null   $value
      */
     public function orWhereNotLike($column, $value = null)
     {
@@ -301,10 +263,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param string $chainType
-     *
-     * @return $this
      */
     public function whereNull($column, $chainType = 'AND')
     {
@@ -314,9 +274,7 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
-     *
-     * @return $this
+     * @param string $column
      */
     public function orWhereNull($column)
     {
@@ -326,10 +284,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param string $chainType
-     *
-     * @return $this
      */
     public function whereNotNull($column, $chainType = 'AND')
     {
@@ -339,9 +295,7 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
-     *
-     * @return $this
+     * @param string $column
      */
     public function orWhereNotNull($column)
     {
@@ -351,11 +305,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $columns
+     * @param string $columns
      * @param null   $operator
      * @param string $chainType
-     *
-     * @return $this
      */
     public function whereMany($columns, $operator = null, $chainType = 'AND')
     {
@@ -366,10 +318,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $column
+     * @param string $column
      * @param string $direction
-     *
-     * @return $this
      */
     public function orderBy($column, $direction = 'ASC')
     {
@@ -381,8 +331,6 @@ abstract class StatementContainer
     /**
      * @param int $number
      * @param int $offset
-     *
-     * @return $this
      */
     public function limit($number, $offset = 0)
     {
@@ -433,20 +381,50 @@ abstract class StatementContainer
     }
 
     /**
+     * @return \PDOStatement
+     */
+    public function executeMulti()
+    {
+        $stmt = $this->getStatement();
+        $this->bindValuesMulti($stmt, $this->values);
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    /**
      * Bind values to their parameters in the given statement.
      *
      * @param  \PDOStatement $statement
-     * @param  array  $bindings
-     * @return void
+     * @param  array         $bindings
      */
     protected function bindValues($statement, $bindings)
     {
         foreach ($bindings as $key => $value) {
             $statement->bindValue(
-                is_string($key) ? $key : $key + 1, $value,
+                is_string($key) ? $key : $key + 1,
+                $value,
                 is_int($value) ? \PDO::PARAM_INT : \PDO::PARAM_STR
             );
         }
+    }
+
+    /**
+     * Bind values for a multi statement.
+     *
+     * @param  \PDOStatement $statement
+     * @param  array         $bindings
+     */
+    protected function bindValuesMulti($statement, $bindings)
+    {
+        // Reduce array to flat values while preserving order
+        $values = [];
+
+        foreach ($bindings as $array) {
+            $values = array_merge($values, array_values($array));
+        }
+
+        return $this->bindValues($statement, $values);
     }
 
     /**
@@ -458,9 +436,7 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $table
-     *
-     * @return $this
+     * @param string $table
      */
     protected function setTable($table)
     {
@@ -469,11 +445,6 @@ abstract class StatementContainer
         return $this;
     }
 
-    /**
-     * @param array $columns
-     *
-     * @return $this
-     */
     protected function setColumns(array $columns)
     {
         $this->columns = array_merge($this->columns, $columns);
@@ -481,14 +452,16 @@ abstract class StatementContainer
         return $this;
     }
 
-    /**
-     * @param array $values
-     *
-     * @return $this
-     */
     protected function setValues(array $values)
     {
         $this->values = array_merge($this->values, $values);
+
+        return $this;
+    }
+
+    protected function appendValues(array $values)
+    {
+        $this->values[] = $values;
 
         return $this;
     }
@@ -500,14 +473,28 @@ abstract class StatementContainer
     {
         $placeholders = $this->placeholders;
 
-        $this->placeholders = array();
+        $this->placeholders = [];
 
         return '( '.implode(' , ', $placeholders).' )';
     }
 
     /**
-     * @param array $values
+     * @return string
      */
+    protected function getPlaceholdersMulti()
+    {
+        $result = [];
+        $placeholders = $this->placeholdersMulti;
+
+        $this->placeholdersMulti = [];
+
+        foreach ($placeholders as $placeholder) {
+            $result[] = '( '.implode(' , ', $placeholder).' )';
+        }
+
+        return implode(' , ', $result);
+    }
+
     protected function setPlaceholders(array $values)
     {
         foreach ($values as $value) {
@@ -519,9 +506,22 @@ abstract class StatementContainer
         }
     }
 
+    protected function setMultiPlaceholders(array $values)
+    {
+        $placeholders = [];
+
+        foreach ($values as $value) {
+            $placeholders[] = $this->setPlaceholder(
+                '?',
+                is_array($value) || $value instanceof \Countable
+                    ? sizeof($value)
+                    : 1);
+        }
+
+        $this->placeholdersMulti[] = $placeholders;
+    }
+
     /**
-     * @param array $array
-     *
      * @return bool
      */
     protected function isAssociative(array $array)
@@ -540,7 +540,7 @@ abstract class StatementContainer
     }
 
     /**
-     * @param $text
+     * @param string $text
      * @param int    $count
      * @param string $separator
      *
@@ -548,7 +548,7 @@ abstract class StatementContainer
      */
     private function setPlaceholder($text, $count = 0, $separator = ' , ')
     {
-        $result = array();
+        $result = [];
 
         if ($count > 0) {
             for ($x = 0; $x < $count; ++$x) {

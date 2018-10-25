@@ -1,5 +1,24 @@
 ### Changelog
 
+##### v2.0.2
++ Updated `GroupClause` class with:
+  - For backwards compatibility, `groupBy()` accepts both `array` and `string`
+
+##### v2.0.1
++ Updated `GroupClause` class with:
+  - `array` type is required in `groupBy()` function
+  - Values can still be appended with multiple calls
+
+##### v2.0.0
++ Added `InsertMultiStatement` class with:
+  - Support to insert multiple rows at once
+  - Support for `ON DUPLICATE KEY UPDATE`
++ Refactored code formatting to PSR-2/Symfony
+  - Set up PHP CS Fixer and config file with rules
+  - Removed unnecessary PHP doc tags and comments
+  - Changed namespaces and updated all documentation
++ Moved code out of `PDO` sub-folder and into `src`
+
 ##### v1.10.1
 + Updated `Database` class with:
   - Allow user provided PDO options to overwrite default values

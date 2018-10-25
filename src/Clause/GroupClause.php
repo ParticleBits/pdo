@@ -1,30 +1,21 @@
 <?php
 
-/**
- * @license MIT
- * @license http://opensource.org/licenses/MIT
- */
+namespace Pb\PDO\Clause;
 
-namespace Slim\PDO\Clause;
-
-/**
- * Class GroupClause.
- *
- * @author Fabian de Laender <fabian@faapz.nl>
- */
 class GroupClause extends ClauseContainer
 {
     /**
-     * @param $columns
+     * @param mixed $columns
      */
     public function groupBy($columns)
     {
-        $this->container[] = $columns;
+        if (is_array($columns)) {
+            $this->container += $columns;
+        } else {
+            $this->container[] = $columns;
+        }
     }
 
-    /**
-     * @return string
-     */
     public function __toString()
     {
         if (empty($this->container)) {

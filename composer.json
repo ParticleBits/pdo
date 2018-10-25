@@ -1,35 +1,45 @@
 {
-    "name": "mikegioia/pdo",
-    "description": "PDO database library for Slim Framework",
-    "version": "1.10.1",
+    "name": "particlebits/pdo",
+    "description": "Smallest possible PDO database while being super useful",
     "type": "library",
-    "keywords": ["pdo", "database", "slim", "framework"],
-    "homepage": "https://github.com/mikegioia/Slim-PDO",
+    "keywords": [
+        "micro pdo",
+        "tiny pdo",
+        "pdo",
+        "database"
+    ],
+    "homepage": "https://github.com/particlebits/pdo",
     "license": "MIT",
     "authors": [
+        {
+            "name": "Mike Gioia",
+            "homepage": "https://particlebits.com",
+            "email": "mike@particlebits.com",
+            "role": "Developer"
+        },
         {
             "name": "Fabian de Laender",
             "email": "fabian@faapz.nl",
             "homepage": "http://faapz.nl",
-            "role": "Developer"
-        },
-        {
-            "name": "Mike Gioia",
-            "homepage": "http://mikegioia.com",
-            "email": "mikegioia@gmail.com"
+            "role": "Original Developer"
         }
     ],
     "support": {
-        "issues": "https://github.com/mikegioia/Slim-PDO/issues",
-        "docs": "https://github.com/mikegioia/Slim-PDO/blob/master/docs/README.md"
+        "issues": "https://github.com/particlebits/pdo/issues",
+        "docs": "https://github.com/particlebits/pdo/blob/master/docs/README.md"
     },
     "require": {
-        "php": ">=5.3.0",
+        "php": ">= 5.6",
         "ext-pdo": "*"
+    },
+    "scripts": {
+        "fix": "php-cs-fixer fix",
+        "test": "./vendor/bin/phpunit",
+        "lint": "php-cs-fixer fix --dry-run --diff"
     },
     "autoload": {
         "psr-4": {
-            "Slim\\PDO\\": "src/PDO/"
+            "Pb\\PDO\\": "src/"
         }
     }
 }
