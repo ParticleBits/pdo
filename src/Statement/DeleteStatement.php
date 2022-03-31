@@ -7,13 +7,15 @@ use Pb\PDO\Database;
 class DeleteStatement extends StatementContainer
 {
     /**
-     * @param string   $table
+     * @param string|null $table
      */
-    public function __construct(Database $dbh, $table)
+    public function __construct(Database $dbh, $table = null)
     {
         parent::__construct($dbh);
 
-        $this->setTable($table);
+        if ($table) {
+            $this->setTable($table);
+        }
     }
 
     /**
