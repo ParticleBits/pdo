@@ -4,7 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/ParticleBits/pdo/v/stable)](https://packagist.org/packages/ParticleBits/pdo)
 [![License](https://poser.pugx.org/ParticleBits/pdo/license)](https://packagist.org/packages/ParticleBits/pdo)
 
-Smallest possible PDO database while being super useful
+Smallest possible PDO database while still being super useful
 
 ### Installation
 
@@ -16,11 +16,16 @@ Use [Composer](https://getcomposer.org/)
 }
 ```
 
-Compatible with PHP 5.6 and higher. Tested on all versions of PHP 5.6 and higher.
+### Features
+
+ * Compatible with PHP 5.6 and higher!
+ * Tested on all versions of PHP 5.6 -> 7.4 _(Not tested yet on PHP 8.x)_
+ * No dependencies other than the PDO extension
+ * Tiny footprint
 
 ### Usage
 
-Examples selecting, inserting, updating and deleting data from or into `users` table.
+Examples selecting, inserting, updating and deleting data from or into the `users` table.
 
 ```php
 require_once 'vendor/autoload.php';
@@ -32,36 +37,42 @@ $pwd = 'your_db_password';
 $pdo = new \Pb\PDO\Database($dsn, $usr, $pwd);
 
 // SELECT * FROM users WHERE id = ?
-$selectStatement = $pdo->select()
-                       ->from('users')
-                       ->where('id', '=', 1234);
+$stmt = $pdo
+    ->select()
+    ->from('users')
+    ->where('id', '=', 1234)
+    ->execute();
 
-$stmt = $selectStatement->execute();
 $data = $stmt->fetch();
 
-// INSERT INTO users ( id , usr , pwd ) VALUES ( ? , ? , ? )
-$insertStatement = $pdo->insert(['id', 'usr', 'pwd'])
-                       ->into('users')
-                       ->values([1234, 'your_username', 'your_password']);
+// INSERT INTO users (id , usr , pwd) VALUES (? , ? , ?)
+$stmt = $pdo
+    ->insert(['id', 'usr', 'pwd'])
+    ->into('users')
+    ->values([1234, 'your_username', 'your_password']);
 
-$insertId = $insertStatement->execute(false);
+$insertId = $stmt->execute(true); // true returns insert ID
 
 // UPDATE users SET pwd = ? WHERE id = ?
-$updateStatement = $pdo->update(['pwd' => 'your_new_password'])
-                       ->table('users')
-                       ->where('id', '=', 1234);
+$stmt = $pdo
+    ->update(['pwd' => 'your_new_password'])
+    ->table('users')
+    ->where('id', '=', 1234);
 
-$affectedRows = $updateStatement->execute();
+$affectedRows = $stmt->execute();
 
 // DELETE FROM users WHERE id = ?
-$deleteStatement = $pdo->delete()
-                       ->from('users')
-                       ->where('id', '=', 1234);
+$stmt = $pdo
+    ->delete()
+    ->from('users')
+    ->where('id', '=', 1234);
 
-$affectedRows = $deleteStatement->execute();
+$affectedRows = $stmt->execute();
 ```
 
-> The `sqlsrv` extension will fail to connect when using error mode `PDO::ERRMODE_EXCEPTION` (default). To connect, you will need to explicitly pass `array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)` (or `PDO::ERRMODE_SILENT`) into the constructor, or override the `getDefaultOptions()` method when using `sqlsrv`.
+### Notes on the `sqlsrv` extension
+
+The `sqlsrv` extension will fail to connect when using error mode `PDO::ERRMODE_EXCEPTION` (default). To connect, you will need to explicitly pass `array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)` (or `PDO::ERRMODE_SILENT`) into the constructor, or override the `getDefaultOptions()` method when using `sqlsrv`.
 
 ### Documentation
 
