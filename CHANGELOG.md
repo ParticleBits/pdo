@@ -7,6 +7,11 @@
   - These were all from phpstan errors
   - Increased minor version number because of compatibility
 
+##### v2.0.3
++ Fixes bug with having 
+  - Removed backticks from `having()` method
+  - These were not needed and they caused downstream issues
+
 ##### v2.0.2
 + Updated `GroupClause` class with:
   - For backwards compatibility, `groupBy()` accepts both `array` and `string`
