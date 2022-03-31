@@ -1,6 +1,6 @@
 # WHERE clause
 
-> Used in [SELECT](https://github.com/ParticleBits/PDO/blob/master/docs/Statement/SELECT.md), [UPDATE](https://github.com/ParticleBits/PDO/blob/master/docs/Statement/UPDATE.md) and [DELETE](https://github.com/ParticleBits/PDO/blob/master/docs/Statement/DELETE.md) statements.
+Used in [SELECT](https://github.com/ParticleBits/PDO/blob/master/docs/Statement/SELECT.md), [UPDATE](https://github.com/ParticleBits/PDO/blob/master/docs/Statement/UPDATE.md) and [DELETE](https://github.com/ParticleBits/PDO/blob/master/docs/Statement/DELETE.md) statements.
 
 ### Methods
 
@@ -143,35 +143,35 @@ Parameter | Type | Default | Description
 
 ```php
 // ... WHERE usr = ? OR f_name = ?
-$statement->where('usr', '=', 'FaaPz')
-          ->orWhere('f_name', '=', 'Fabian');
+$stmt->where('usr', '=', 'foobar')
+    ->orWhere('f_name', '=', 'Foo');
 
 // ... WHERE customer_id BETWEEN ? AND ?
-$statement->whereBetween('customer_id', [110, 220]);
+$stmt->whereBetween('customer_id', [110, 220]);
 
 // ... WHERE customer_id NOT BETWEEN ? AND ?
-$statement->whereNotBetween('customer_id', [330, 440]);
+$stmt->whereNotBetween('customer_id', [330, 440]);
 
-// ... WHERE customer_id IN ( ?, ?, ?, ? )
-$statement->whereIn('customer_id', [110, 120, 130, 140 ]);
+// ... WHERE customer_id IN (?, ?, ?, ?)
+$stmt->whereIn('customer_id', [110, 120, 130, 140 ]);
 
-// ... WHERE customer_id NOT IN ( ?, ?, ?, ? )
-$statement->whereNotIn('customer_id', [112, 124, 136, 148 ]);
+// ... WHERE customer_id NOT IN (?, ?, ?, ?)
+$stmt->whereNotIn('customer_id', [112, 124, 136, 148 ]);
 
 // ... WHERE f_name LIKE ?
-$statement->whereLike('f_name', 'Fab___');
+$stmt->whereLike('f_name', 'Foo');
 
 // ... WHERE l_name NOT LIKE ?
-$statement->whereNotLike('l_name', 'Lae%');
+$stmt->whereNotLike('l_name', 'Bar%');
 
 // ... WHERE f_name IS NULL
-$statement->whereNull('f_name');
+$stmt->whereNull('f_name');
 
 // ... WHERE l_name IS NOT NULL
-$statement->whereNotNull('l_name');
+$stmt->whereNotNull('l_name');
 
 // ... WHERE col_1 = ? AND col_2 = ? AND col_3 = ?
-$statement->whereMany(
+$stmt->whereMany(
     [
         'col_1' => 'val_1',
         'col_2' => 'val_2',

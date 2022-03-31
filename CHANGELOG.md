@@ -1,5 +1,9 @@
 ### Changelog
 
+##### v2.1.1
++ Updated `README` and docs contents
+  - Cleaned up the php examples and content
+
 ##### v2.1.0
 + Updated internal tools php-cs-fixer and phpstan
   - Cleared all phpstan errors up to level 8 (max)

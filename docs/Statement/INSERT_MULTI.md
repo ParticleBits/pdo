@@ -36,34 +36,20 @@ Parameter | Type | Default | Description
 
 ### Examples
 
-```php
-// INSERT INTO users ( id , usr , pwd ) VALUES ( ? , ? , ? )
-$insertStatement = $db->insert(['id', 'usr', 'pwd'])
-                      ->into('users')
-                      ->values([1234, 'your_username', 'your_password']);
-
-// INSERT INTO users ( id , usr , pwd ) VALUES ( ? , ? , ? )
-$insertStatement = $db->insert(['id'])
-                      ->into('users')
-                      ->columns(['usr', 'pwd'])
-                      ->values([1234, 'your_username', 'your_password']);
-
-$insertId = $insertStatement->execute(false);
-```
-
 #### Inserting multiple rows at once
 
 ```php
-// INSERT INTO users ( usr, pwd ) VALUES ( ? , ? )
-// ON DUPLICATE KEY UPDATE pwd = VALUES( pwd )
-$insertStatement = $db->insertMulti(['usr', 'pwd'])
-                      ->into('users')
-                      ->values(
-                          ['usr_1', 'pwd_1'],
-                          ['usr_2', 'pwd_2'],
-                          ['usr_3', 'pwd_3'])
-                      ->addRow(['usr_4', 'pwd_4'])
-                      ->onDuplicateKeyUpdate(['pwd']);
+// INSERT INTO users (usr, pwd) VALUES (? , ?)
+// ON DUPLICATE KEY UPDATE pwd = VALUES (pwd)
+$stmt = $db
+    ->insertMulti(['usr', 'pwd'])
+    ->into('users')
+    ->values(
+        ['usr_1', 'pwd_1'],
+        ['usr_2', 'pwd_2'],
+        ['usr_3', 'pwd_3']
+    )->addRow(['usr_4', 'pwd_4'])
+    ->onDuplicateKeyUpdate(['pwd']);
 
-$affectedRows = $insertStatement->execute();
+$affectedRows = $stmt->execute(); // returns int
 ```

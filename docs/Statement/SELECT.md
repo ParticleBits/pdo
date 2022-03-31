@@ -179,10 +179,11 @@ Parameter | Type | Default | Description
 
 ```php
 // SELECT * FROM users WHERE id = ?
-$selectStatement = $db->select()
-                      ->from('users')
-                      ->where('id', '=', 1234);
+$stmt = $db
+    ->select()
+    ->from('users')
+    ->where('id', '=', 1234)
+    ->execute(); // \PDOStatement
 
-$stmt = $selectStatement->execute();
 $data = $stmt->fetch();
 ```

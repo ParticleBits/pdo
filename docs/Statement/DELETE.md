@@ -20,9 +20,10 @@ Parameter | Type | Default | Description
 
 ```php
 // DELETE FROM users WHERE id = ?
-$deleteStatement = $db->delete()
-                      ->from('users')
-                      ->where('id', '=', 1234);
+$stmt = $db
+    ->delete()
+    ->from('users')
+    ->where('id', '=', 1234);
 
-$affectedRows = $deleteStatement->execute();
+$affectedRows = $stmt->execute();
 ```
