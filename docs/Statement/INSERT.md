@@ -29,16 +29,19 @@ Parameter | Type | Default | Description
 ### Examples
 
 ```php
-// INSERT INTO users ( usr , pwd ) VALUES ( ? , ? )
-$insertStatement = $db->insert(['usr', 'pwd'])
-                      ->into('users')
-                      ->values(['usr_1', 'pwd_1']);
+// INSERT INTO users (usr , pwd) VALUES (? , ?)
+$stmt = $db
+    ->insert(['usr', 'pwd'])
+    ->into('users')
+    ->values(['usr_1', 'pwd_1']);
 
-// INSERT INTO users ( id , usr , pwd ) VALUES ( ? , ? , ? )
-$insertStatement = $db->insert(['id'])
-                      ->into('users')
-                      ->columns(['usr', 'pwd'])
-                      ->values([1234, 'usr_1234', 'pwd_1234']);
+// INSERT INTO users (id , usr , pwd) VALUES (? , ? , ?)
+$stmt = $db
+    ->insert(['id'])
+    ->into('users')
+    ->columns(['usr', 'pwd'])
+    ->values([1234, 'usr_1234', 'pwd_1234']);
 
-$insertId = $insertStatement->execute(false);
+$insertId = $stmt->execute(true); // returns string ID of new row
+$pdoStmt = $stmt->execute(false); // returns \PDOStatement
 ```

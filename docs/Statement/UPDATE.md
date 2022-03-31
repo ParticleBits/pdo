@@ -26,15 +26,17 @@ Parameter | Type | Default | Description
 
 ```php
 // UPDATE users SET pwd = ? WHERE id = ?
-$updateStatement = $db->update(['pwd' => 'your_new_password'])
-                      ->table('users')
-                      ->where('id', '=', 1234);
+$stmt = $db
+    ->update(['pwd' => 'your_new_password'])
+    ->table('users')
+    ->where('id', '=', 1234);
 
 // UPDATE users SET usr = ? , pwd = ? WHERE id = ?
-$updateStatement = $db->update(['usr' => 'your_new_username'])
-                      ->set(['pwd' => 'your_new_password'])
-                      ->table('users')
-                      ->where('id', '=', 1234);
+$stmt = $db
+    ->update(['usr' => 'your_new_username'])
+    ->set(['pwd' => 'your_new_password'])
+    ->table('users')
+    ->where('id', '=', 1234);
 
-$affectedRows = $updateStatement->execute();
+$affectedRows = $stmt->execute();
 ```
