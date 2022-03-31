@@ -69,11 +69,11 @@ class Database extends PDO
     }
 
     /**
-     * @param string $table
+     * @param string|null $table
      *
      * @return DeleteStatement
      */
-    public function delete($table)
+    public function delete($table = null)
     {
         return new DeleteStatement($this, $table);
     }

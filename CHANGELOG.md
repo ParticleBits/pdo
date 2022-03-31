@@ -1,5 +1,10 @@
 ### Changelog
 
+##### v2.1.2
++ Reverts change to `DeleteStatement` constructor
+  - `$table` argument made nullable again
+  - Only calling `setTable()` now if `$table` exists
+
 ##### v2.1.1
 + Updated `README` and docs contents
   - Cleaned up the php examples and content
