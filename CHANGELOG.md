@@ -1,5 +1,9 @@
 ### Changelog
 
+##### v2.1.4
++ Fixes more type hints in some statement classes
+  - Where clause hints were not expansive enough
+
 ##### v2.1.3
 + Fixes type hints in some statement classes
   - Some parameters only allowed null and needed string|null

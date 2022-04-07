@@ -5,7 +5,7 @@ namespace Pb\PDO\Clause;
 class GroupClause extends ClauseContainer
 {
     /**
-     * @param mixed $columns
+     * @param array|string $columns
      *
      * @return void
      */

@@ -239,7 +239,7 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $columns
+     * @param array|string $columns
      *
      * @return self
      */
@@ -251,10 +251,10 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $operator
-     * @param string|null $value
-     * @param string      $chainType
+     * @param string          $column
+     * @param string|null     $operator
+     * @param string|int|null $value
+     * @param string          $chainType
      *
      * @return self
      */
@@ -268,9 +268,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $operator
-     * @param string|null $value
+     * @param string          $column
+     * @param string|null     $operator
+     * @param string|int|null $value
      *
      * @return self
      */
@@ -284,9 +284,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $operator
-     * @param string|null $value
+     * @param string          $column
+     * @param string|null     $operator
+     * @param string|int|null $value
      *
      * @return self
      */
@@ -300,9 +300,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $operator
-     * @param string|null $value
+     * @param string          $column
+     * @param string|null     $operator
+     * @param string|int|null $value
      *
      * @return self
      */
@@ -316,9 +316,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $operator
-     * @param string|null $value
+     * @param string          $column
+     * @param string|null     $operator
+     * @param string|int|null $value
      *
      * @return self
      */
@@ -332,9 +332,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $operator
-     * @param string|null $value
+     * @param string          $column
+     * @param string|null     $operator
+     * @param string|int|null $value
      *
      * @return self
      */
@@ -348,9 +348,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $operator
-     * @param string|null $value
+     * @param string          $column
+     * @param string|null     $operator
+     * @param string|int|null $value
      *
      * @return self
      */
