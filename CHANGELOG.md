@@ -1,5 +1,9 @@
 ### Changelog
 
+##### v2.1.3
++ Fixes type hints in some statement classes
+  - Some parameters only allowed null and needed string|null
+
 ##### v2.1.2
 + Reverts change to `DeleteStatement` constructor
   - `$table` argument made nullable again
