@@ -64,10 +64,10 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $operator
-     * @param string|null $value
-     * @param string      $chainType
+     * @param string          $column
+     * @param string|null     $operator
+     * @param string|int|null $value
+     * @param string          $chainType
      *
      * @return self
      */
@@ -81,9 +81,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $operator
-     * @param string|null $value
+     * @param string          $column
+     * @param string|null     $operator
+     * @param string|int|null $value
      *
      * @return self
      */
@@ -221,9 +221,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $value
-     * @param string      $chainType
+     * @param string          $column
+     * @param string|int|null $value
+     * @param string          $chainType
      *
      * @return self
      */
@@ -237,8 +237,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $value
+     * @param string          $column
+     * @param string|int|null $value
      *
      * @return self
      */
@@ -252,9 +252,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $value
-     * @param string      $chainType
+     * @param string          $column
+     * @param string|int|null $value
+     * @param string          $chainType
      *
      * @return self
      */
@@ -268,8 +268,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string      $column
-     * @param string|null $value
+     * @param string          $column
+     * @param string|int|null $value
      *
      * @return self
      */
@@ -357,6 +357,18 @@ abstract class StatementContainer
     {
         $this->orderClause->orderBy($column, $direction);
 
+        return $this;
+    }
+
+    /**
+     * Handled in sub-classes when available.
+     *
+     * @param array|string $columns
+     *
+     * @return self
+     */
+    public function groupBy($columns)
+    {
         return $this;
     }
 
