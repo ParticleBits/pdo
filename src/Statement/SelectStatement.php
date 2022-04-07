@@ -178,11 +178,11 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $table
-     * @param string $first
-     * @param null   $operator
-     * @param null   $second
-     * @param string $joinType
+     * @param string      $table
+     * @param string      $first
+     * @param string|null $operator
+     * @param string|null $second
+     * @param string      $joinType
      *
      * @return self
      */
@@ -194,10 +194,10 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $table
-     * @param string $first
-     * @param null   $operator
-     * @param null   $second
+     * @param string      $table
+     * @param string      $first
+     * @param string|null $operator
+     * @param string|null $second
      *
      * @return self
      */
@@ -209,10 +209,10 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $table
-     * @param string $first
-     * @param null   $operator
-     * @param null   $second
+     * @param string      $table
+     * @param string      $first
+     * @param string|null $operator
+     * @param string|null $second
      *
      * @return self
      */
@@ -224,10 +224,10 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $table
-     * @param string $first
-     * @param null   $operator
-     * @param null   $second
+     * @param string      $table
+     * @param string      $first
+     * @param string|null $operator
+     * @param string|null $second
      *
      * @return self
      */
@@ -251,10 +251,10 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $operator
-     * @param null   $value
-     * @param string $chainType
+     * @param string      $column
+     * @param string|null $operator
+     * @param string|null $value
+     * @param string      $chainType
      *
      * @return self
      */
@@ -268,9 +268,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $operator
-     * @param null   $value
+     * @param string      $column
+     * @param string|null $operator
+     * @param string|null $value
      *
      * @return self
      */
@@ -284,9 +284,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $operator
-     * @param null   $value
+     * @param string      $column
+     * @param string|null $operator
+     * @param string|null $value
      *
      * @return self
      */
@@ -300,9 +300,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $operator
-     * @param null   $value
+     * @param string      $column
+     * @param string|null $operator
+     * @param string|null $value
      *
      * @return self
      */
@@ -316,9 +316,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $operator
-     * @param null   $value
+     * @param string      $column
+     * @param string|null $operator
+     * @param string|null $value
      *
      * @return self
      */
@@ -332,9 +332,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $operator
-     * @param null   $value
+     * @param string      $column
+     * @param string|null $operator
+     * @param string|null $value
      *
      * @return self
      */
@@ -348,9 +348,9 @@ class SelectStatement extends StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $operator
-     * @param null   $value
+     * @param string      $column
+     * @param string|null $operator
+     * @param string|null $value
      *
      * @return self
      */

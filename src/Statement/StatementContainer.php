@@ -64,10 +64,10 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $operator
-     * @param null   $value
-     * @param string $chainType
+     * @param string      $column
+     * @param string|null $operator
+     * @param string|null $value
+     * @param string      $chainType
      *
      * @return self
      */
@@ -81,9 +81,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $operator
-     * @param null   $value
+     * @param string      $column
+     * @param string|null $operator
+     * @param string|null $value
      *
      * @return self
      */
@@ -221,9 +221,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $value
-     * @param string $chainType
+     * @param string      $column
+     * @param string|null $value
+     * @param string      $chainType
      *
      * @return self
      */
@@ -237,8 +237,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $value
+     * @param string      $column
+     * @param string|null $value
      *
      * @return self
      */
@@ -252,9 +252,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $value
-     * @param string $chainType
+     * @param string      $column
+     * @param string|null $value
+     * @param string      $chainType
      *
      * @return self
      */
@@ -268,8 +268,8 @@ abstract class StatementContainer
     }
 
     /**
-     * @param string $column
-     * @param null   $value
+     * @param string      $column
+     * @param string|null $value
      *
      * @return self
      */
@@ -333,9 +333,9 @@ abstract class StatementContainer
     }
 
     /**
-     * @param array  $columns
-     * @param null   $operator
-     * @param string $chainType
+     * @param array       $columns
+     * @param string|null $operator
+     * @param string      $chainType
      *
      * @return self
      */
